@@ -1,9 +1,11 @@
 package com.habanaCrem.gestionProductos.Repository;
 
 
+import com.habanaCrem.gestionProductos.DTOs.ProductoMasVendidoDTO;
 import com.habanaCrem.gestionProductos.Entity.Caja;
 import com.habanaCrem.gestionProductos.Entity.EstadoCaja;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -29,4 +31,5 @@ public interface CajaRepository extends JpaRepository<Caja, Integer> {
             LocalDate fin,
             EstadoCaja  estado
     );
+
 }

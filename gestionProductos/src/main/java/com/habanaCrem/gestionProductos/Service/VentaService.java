@@ -41,6 +41,7 @@ public class VentaService{
     private final MayoristaRepository mayoristaRepository;
     private final InventarioRepository inventarioRepository;
     private final CajaService cajaService;
+    private final DetallesVentaRepository detalleVentaRepository;
 
     /**
      * Registra una nueva venta en el sistema.
@@ -560,6 +561,18 @@ public class VentaService{
                 .tipoVenta(ventaActualizada.getTipoVenta())
                 .build();
 
+    }
+
+    public List<ProductoMasVendidoDTO> obtenerTopProductos(
+            LocalDate inicio,
+            LocalDate fin
+    ) {
+        if(inicio.isAfter(fin)){
+            throw new NegocioException("La fecha inicial no puede ser mayor a la final");
+        }
+
+        return detalleVentaRepository
+                .obtenerProductosMasVendidos(inicio, fin);
     }
 
     private void validarDetallePorTipoVenta(
